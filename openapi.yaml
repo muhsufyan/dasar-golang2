@@ -11,6 +11,8 @@ servers:
 paths:
   /categories:
     get:
+      security:
+        - CategoryAuth: []
       tags:
         - Category API
       summary: List all categories
@@ -32,6 +34,8 @@ paths:
                     items:
                       $ref: '#/components/schemas/Category'
     post:
+      security:
+        - CategoryAuth: []
       tags:
         - Category API
       summary: create new category
@@ -57,11 +61,13 @@ paths:
                     $ref: '#/components/schemas/Category'
   /category/{categoryId}:
     get:
+      security:
+        - CategoryAuth: []
       tags:
         - Category API
       summary: Get a category by id
       description: Get a category by id
-      parameters: 
+      parameters:
         - name: categoryId
           in: path
           description: Category id
@@ -84,11 +90,13 @@ paths:
                   data:
                     $ref: '#/components/schemas/Category'
     put:
+      security:
+        - CategoryAuth: []
       tags:
         - Category API
       summary: Update a category by id
       description: Update a category by id
-      parameters: 
+      parameters:
         - name: categoryId
           in: path
           description: Category id
@@ -116,11 +124,13 @@ paths:
                   data:
                     $ref: '#/components/schemas/Category'
     delete:
+      security:
+        - CategoryAuth: []
       tags:
         - Category API
       summary: Delete a category by id
       description: Delete a category by id
-      parameters: 
+      parameters:
         - name: categoryId
           in: path
           description: Category id
@@ -141,6 +151,12 @@ paths:
                   status:
                     type: string
 components:
+  securitySchemes:
+    CategoryAuth:
+      type: apiKey
+      in: header
+      name: X-API-KEY
+      description: Authentication for Category API
   schemas:
     Category:
       type: object

@@ -1,6 +1,10 @@
 # dasar-golang2
 Untuk melihat dokumentasi api-nya kunjungi https://editor.swagger.io/
 
-dokumentasi delete a category by id
+dokumentasi security untuk login
 
-delete ini sbnrnya sama sprti get by id jd kita tinggal copas yg get by id lalu modifikasi sedikit yaitu response yg dikembalikan tdk bth data hanya code & status-nya
+untuk login (otentifikasi) nya menggunakan api-key
+
+untuk menambahkannya buat dulu component baru (securitySchemes) dan beri nama (kasus ini CategoryAuth) lalu terapkan di setiap http method stlh get misalnya tambah 
+    security:
+        - CategoryAuth: []

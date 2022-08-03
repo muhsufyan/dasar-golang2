@@ -11,12 +11,14 @@
   },
   "servers":[
     {
-      "url":"localhost:3000/api"
+      "url":"http://localhost:3000/api"
     }
     ],
   "paths":{
     "/categories":{
       "get":{
+        "tags":["Category API"],
+        "summary":"List all categories",
         "description":"List all categories",
         "responses":{
           "200":{
@@ -42,8 +44,48 @@
                         },
                         "name":{
                           "type":"string"
+                          }
                         }
                       }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "post":{
+        "tags":["Category API"],
+        "summary":"create new category",
+        "description":"create new category",
+        "requestBody":{
+          "content":{
+            "application/json":{
+              "schema":{
+                "type":"object",
+                "properties":{
+                  "name":{
+                    "type":"string"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses":{
+          "201":{
+            "description":"success create category",
+            "content":{
+              "application/json":{
+                "schema":{
+                  "type":"object",
+                  "properties":{
+                    "id":{
+                      "type":"number"
+                    },
+                    "name":{
+                      "type":"string"
                     }
                   }
                 }
@@ -54,5 +96,4 @@
       }
     }
   }
-}
 }

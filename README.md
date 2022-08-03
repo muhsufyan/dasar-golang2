@@ -1,4 +1,6 @@
 # dasar-golang2
-<!-- ini di branch restapi-1-openapi jd folder consuming_api & main.go dihapus manual, tidak bisa pull karena error-->
-Untuk melihat dokumentasi api-nya kunjungi https://editor.swagger.io/ lalu import kode pd file openapi.json
-https://www.youtube.com/watch?v=o5b6TYSNK5c openapi
+Untuk melihat dokumentasi api-nya kunjungi https://editor.swagger.io/
+
+openapi_with_wraph_standardresponse.json berisi post yg response-nya disamakan (standar) dg get all categories yaitu code, status, dan data
+
+openapi_withcomponent.yaml adlh get dan post memiliki response yg sama sehingga response akan disimpan dalam component lalu tinggal panggil component-nya di get & post

@@ -40,10 +40,7 @@ paths:
         content:
           application/json:
             schema:
-              type: object
-              properties:
-                name:
-                  type: string
+              $ref: '#/components/schemas/CreateOrUpdate'
       responses:
         '201':
           description: success create category
@@ -103,10 +100,7 @@ paths:
         content:
           application/json:
             schema:
-              type: object
-              properties:
-                name:
-                  type: string
+              $ref: '#/components/schemas/CreateOrUpdate'
       responses:
         '200':
           description: success get a category
@@ -128,5 +122,10 @@ components:
       properties:
         id:
           type: number
+        name:
+          type: string
+    CreateOrUpdate:
+      type: object
+      properties:
         name:
           type: string

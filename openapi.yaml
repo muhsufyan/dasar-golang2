@@ -58,6 +58,35 @@ paths:
                     type: string
                   data:
                     $ref: '#/components/schemas/Category'
+  /category/{categoryId}:
+    get:
+      tags:
+        - Category API
+      summary: Get a category
+      description: Get a category
+      parameters: 
+        - name: categoryId
+          in: path
+          description: Category id
+          required: true
+          schema:
+            type: integer
+            format: int64
+      responses:
+        '200':
+          description: success get a category
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  code:
+                    type: number
+                  status:
+                    type: string
+                  data:
+                    $ref: '#/components/schemas/Category'
+          
 components:
   schemas:
     Category:

@@ -40,10 +40,7 @@ paths:
         content:
           application/json:
             schema:
-              type: object
-              properties:
-                name:
-                  type: string
+              $ref: '#/components/schemas/CreateOrUpdate'
       responses:
         '201':
           description: success create category
@@ -62,8 +59,8 @@ paths:
     get:
       tags:
         - Category API
-      summary: Get a category
-      description: Get a category
+      summary: Get a category by id
+      description: Get a category by id
       parameters: 
         - name: categoryId
           in: path
@@ -103,10 +100,7 @@ paths:
         content:
           application/json:
             schema:
-              type: object
-              properties:
-                name:
-                  type: string
+              $ref: '#/components/schemas/CreateOrUpdate'
       responses:
         '200':
           description: success get a category
@@ -121,6 +115,31 @@ paths:
                     type: string
                   data:
                     $ref: '#/components/schemas/Category'
+    delete:
+      tags:
+        - Category API
+      summary: Delete a category by id
+      description: Delete a category by id
+      parameters: 
+        - name: categoryId
+          in: path
+          description: Category id
+          required: true
+          schema:
+            type: integer
+            format: int64
+      responses:
+        '200':
+          description: success get a category
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  code:
+                    type: number
+                  status:
+                    type: string
 components:
   schemas:
     Category:
@@ -128,5 +147,10 @@ components:
       properties:
         id:
           type: number
+        name:
+          type: string
+    CreateOrUpdate:
+      type: object
+      properties:
         name:
           type: string

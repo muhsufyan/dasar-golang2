@@ -1,0 +1,18 @@
+{
+  "openapi": "3.0.3",
+  "info": {
+    "title": "Rest API Category",
+    "description": "Spesification Rest API Category with Golang",
+    "version": "1.0.0"
+  },
+  "externalDocs": {
+    "description": "Lebih lanjut belajar tentang membuat openapi",
+    "url": "https://www.youtube.com/watch?v=o5b6TYSNK5c"
+  },
+  "servers": [
+    {
+      "url": "localhost:3000/api/category"
+    }
+  ],
+  "paths": {}
+}

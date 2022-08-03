@@ -1,15 +1,5 @@
 # dasar-golang2
-buat folder baru yaitu migrate, run perintah berikut <br>
-buat database baru dg nama categoryapi<br>
-migrate create -ext sql -dir migrate -seq category_table<br>
-di file .up isi <br>
-CREATE TABLE cateogry{
-    id int AUTO_INCREMENT PRIMARY KEY,
-    name varchar(200) NOT NULL
-}engine=InnoDB
-
-dan di .down isi <br>
-DROP TABLE cateogry;
-<br>
-jlnkan migrasi ke db dg perintah<br>
-migrate -path migrate -database "mysql://root:@tcp(localhost:3306)/categoryapi" up
+1. buat data model, model disini adlh domain jd kasus ini domainnya adlh category
+1.1. data model dpt diartikan sbg model adlh yg konek ke db/ request & response ke api/ dll, tp kita artikan model khusus yg terhub dg db kita sbt sbg domain dan domain kali ini kita sbg category
+<br> jd domain disini diartikan sbg PENGHUBUNG KE DB<br>
+2. kita buat dulu folder baru model/domain/category.go as data model (model) yg menghubkan ke db

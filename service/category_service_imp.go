@@ -79,9 +79,5 @@ func (service *CategoryServiceImpl) FindAll(ctx context.Context) []web.CategoryR
 	defer helper.CommitOrRollback(tx)
 	// implementasi busines logic create category
 	categories := service.CategoryRepository.FindAll(ctx, tx)
-	var categoryResponses []web.CategoryResponse
-	for _, category := range categories {
-		categoryResponses = append(categoryResponses, helper.Convert2CategoryResponse(category))
-	}
-	return categoryResponses
+	return helper.Convert2CategoriesResponses(categories)
 }

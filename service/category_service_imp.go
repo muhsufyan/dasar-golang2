@@ -4,6 +4,7 @@ import (
 	"context"
 	"database/sql"
 
+	"github.com/go-playground/validator/v10"
 	"github.com/muhsufyan/dasar-golang2/helper"
 	"github.com/muhsufyan/dasar-golang2/model/domain"
 	"github.com/muhsufyan/dasar-golang2/model/web"
@@ -15,9 +16,14 @@ type CategoryServiceImpl struct {
 	CategoryRepository repository.CategoryRepository
 	// injek dg db
 	DB *sql.DB
+	// injek validasi data input
+	Validate *validator.Validate
 }
 
 func (service *CategoryServiceImpl) Create(ctx context.Context, request web.CategoryCreateRequest) web.CategoryResponse {
+	// validasi data input dulu
+	err := service.Validate.Struct(request)
+	helper.PanicIfError(err)
 	// mulai transaksi untuk create category
 	tx, err := service.DB.Begin()
 	helper.PanicIfError(err)
@@ -35,6 +41,9 @@ func (service *CategoryServiceImpl) Create(ctx context.Context, request web.Cate
 	return helper.Convert2CategoryResponse(category)
 }
 func (service *CategoryServiceImpl) Update(ctx context.Context, request web.CategoryUpdateRequest) web.CategoryResponse {
+	// validasi data input dulu
+	err := service.Validate.Struct(request)
+	helper.PanicIfError(err)
 	// mulai transaksi ke db
 	tx, err := service.DB.Begin()
 	helper.PanicIfError(err)

@@ -1,6 +1,8 @@
 # dasar-golang2
-implementasi dari interface repository domain category
+membuat contruct interface service dari category 
 
-buat func untuk menghandle error nil disimpan dlm folder helper
+service berisi bisnis logic
 
-CRUD untuk api category telah selesai
+buat folder service
+
+ketika Create di service maka requestnya apa ? karena tdk mungkin domain (domain akan terhubung dg repository bukan service), sehingga kita buat model baru yg akan menjd request dr service maka di model buat folder baru dg nama web lalu untuk request kita buat file category_request.go

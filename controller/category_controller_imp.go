@@ -1,7 +1,6 @@
 package controller
 
 import (
-	"encoding/json"
 	"net/http"
 	"strconv"
 
@@ -17,12 +16,8 @@ type CategoryControllerImp struct {
 }
 
 func (controller *CategoryControllerImp) Create(writer http.ResponseWriter, request *http.Request, params httprouter.Params) {
-	// baca json, karena request.Body mrpkn io.Read maka kita bisa stream datanya memakai decoder
-	decoder := json.NewDecoder(request.Body)
 	categoryCreateRequest := web.CategoryCreateRequest{}
-	// decode data
-	err := decoder.Decode(&categoryCreateRequest)
-	helper.PanicIfError(err)
+	helper.ReadFromRequestBody(request, &categoryCreateRequest)
 	categoryResponse := controller.CategoryService.Create(request.Context(), categoryCreateRequest)
 	// data model untuk response ke user
 	webResponse := web.WebResponse{
@@ -30,21 +25,12 @@ func (controller *CategoryControllerImp) Create(writer http.ResponseWriter, requ
 		Status: "Ok",
 		Data:   categoryResponse,
 	}
-	// tambah header
-	writer.Header().Add("Content-Type", "Application/json")
-	// convert data jd json as response data ke user
-	encoder := json.NewEncoder(writer)
-	err = encoder.Encode(webResponse)
-	helper.PanicIfError(err)
+	// response ke user
+	helper.Write2ResponseBody(writer, webResponse)
 }
 func (controller *CategoryControllerImp) Update(writer http.ResponseWriter, request *http.Request, params httprouter.Params) {
-	// update sama sprti create diatas bedanya kita perlu tahu dulu id berapa yg diupdate
-	// baca json, karena request.Body mrpkn io.Read maka kita bisa stream datanya memakai decoder
-	decoder := json.NewDecoder(request.Body)
 	categoryUpdateRequest := web.CategoryUpdateRequest{}
-	// decode data
-	err := decoder.Decode(&categoryUpdateRequest)
-	helper.PanicIfError(err)
+	helper.ReadFromRequestBody(request, &categoryUpdateRequest)
 	// get id yg ingin diupdate melalui params.ByName() yg return string jd kita perlu convert jd int
 	categoryId := params.ByName("categoryId")
 	// convert id from str to int
@@ -58,12 +44,8 @@ func (controller *CategoryControllerImp) Update(writer http.ResponseWriter, requ
 		Status: "Ok",
 		Data:   categoryResponse,
 	}
-	// tambah header
-	writer.Header().Add("Content-Type", "Application/json")
-	// convert data jd json as response data ke user
-	encoder := json.NewEncoder(writer)
-	err = encoder.Encode(webResponse)
-	helper.PanicIfError(err)
+	// response ke user
+	helper.Write2ResponseBody(writer, webResponse)
 }
 func (controller *CategoryControllerImp) Delete(writer http.ResponseWriter, request *http.Request, params httprouter.Params) {
 	// get id yg ingin didelete melalui params.ByName() yg return string jd kita perlu convert jd int
@@ -78,12 +60,8 @@ func (controller *CategoryControllerImp) Delete(writer http.ResponseWriter, requ
 		Code:   200,
 		Status: "Ok",
 	}
-	// tambah header
-	writer.Header().Add("Content-Type", "Application/json")
-	// convert data jd json as response data ke user
-	encoder := json.NewEncoder(writer)
-	err = encoder.Encode(webResponse)
-	helper.PanicIfError(err)
+	// response ke user
+	helper.Write2ResponseBody(writer, webResponse)
 }
 func (controller *CategoryControllerImp) FindById(writer http.ResponseWriter, request *http.Request, params httprouter.Params) {
 	// get id yg ingin didelete melalui params.ByName() yg return string jd kita perlu convert jd int
@@ -99,12 +77,8 @@ func (controller *CategoryControllerImp) FindById(writer http.ResponseWriter, re
 		Status: "Ok",
 		Data:   categoryResponse,
 	}
-	// tambah header
-	writer.Header().Add("Content-Type", "Application/json")
-	// convert data jd json as response data ke user
-	encoder := json.NewEncoder(writer)
-	err = encoder.Encode(webResponse)
-	helper.PanicIfError(err)
+	// response ke user
+	helper.Write2ResponseBody(writer, webResponse)
 }
 func (controller *CategoryControllerImp) FindAll(writer http.ResponseWriter, request *http.Request, params httprouter.Params) {
 	categoriesResponses := controller.CategoryService.FindAll(request.Context())
@@ -114,10 +88,6 @@ func (controller *CategoryControllerImp) FindAll(writer http.ResponseWriter, req
 		Status: "Ok",
 		Data:   categoriesResponses,
 	}
-	// tambah header
-	writer.Header().Add("Content-Type", "Application/json")
-	// convert data jd json as response data ke user
-	encoder := json.NewEncoder(writer)
-	err := encoder.Encode(webResponse)
-	helper.PanicIfError(err)
+	// response ke user
+	helper.Write2ResponseBody(writer, webResponse)
 }

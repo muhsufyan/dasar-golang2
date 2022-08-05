@@ -1,6 +1,4 @@
 # dasar-golang2
-buat interface category controller, buat folder controller
+implementasi controller
 
-controller termasuk kedlm web api, kita memakai httprouter (bisa juga memakai gin, mux, dll)
-
-install go get github.com/julienschmidt/httprouter
+NOTE BARU BUAT FUNC IMPLEMENTASINYA BLM ADA ISINYA

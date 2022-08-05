@@ -20,6 +20,15 @@ type CategoryServiceImpl struct {
 	Validate *validator.Validate
 }
 
+// contructor untuk service, kita perlu 3 param (sesuai dg struct CategoryServiceImpl yg memerlukan 3 data)
+// return-nya interface service tp sama sprti constructor untuk controller yg dikembalikan sbnrnya adlh struct dari implementasi-nya (dibhs lain ini disbt dg polymorphisme)
+func NewCategoryService(categoryRepository repository.CategoryRepository, DB *sql.DB, validate *validator.Validate) CategoryService {
+	return &CategoryServiceImpl{
+		CategoryRepository: categoryRepository,
+		DB:                 DB,
+		Validate:           validate,
+	}
+}
 func (service *CategoryServiceImpl) Create(ctx context.Context, request web.CategoryCreateRequest) web.CategoryResponse {
 	// validasi data input dulu
 	err := service.Validate.Struct(request)

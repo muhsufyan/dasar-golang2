@@ -1,10 +1,14 @@
 package main
 
 import (
+	"net/http"
+
 	"github.com/go-playground/validator/v10"
+	_ "github.com/go-sql-driver/mysql"
 	"github.com/julienschmidt/httprouter"
 	"github.com/muhsufyan/dasar-golang2/app"
 	"github.com/muhsufyan/dasar-golang2/controller"
+	"github.com/muhsufyan/dasar-golang2/helper"
 	"github.com/muhsufyan/dasar-golang2/repository"
 	"github.com/muhsufyan/dasar-golang2/service"
 )
@@ -29,4 +33,12 @@ func main() {
 	router.POST("/api/categories", categoryController.Create)
 	router.PUT("/api/category/:categoryId", categoryController.Update)
 	router.DELETE("/api/category/:categoryId", categoryController.Delete)
+
+	// http server
+	server := http.Server{
+		Addr:    "localhost:3000",
+		Handler: router,
+	}
+	err := server.ListenAndServe()
+	helper.PanicIfError(err)
 }

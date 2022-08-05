@@ -1,14 +1,10 @@
 # dasar-golang2
-membuat router url
+http server
 
-buat main.go di main directory tp sblm di main tsb memanggil/jlnkan fungsi controller maka kita perlu membuat constructor (kalau di python func __init__) dari controller, di go constructor dr func ini kita namai New....
+kita akan membuat server
 
-dan contructor ini fungsinya as injeksi.
+tambah kode untuk config server di main.go
 
-selain membuat constructor untuk controller kita juga buat constructor untuk service, & repository
+install go get -u github.com/go-sql-driver/mysql
 
-di main.go isinya adlh injeksi dependensi yg diperlukan & define url 
-
-sblmnya kita perlu juga membuat db pooling untuk koneksi ke db. 
-
-caranya buat folder baru yaitu app/database.go yg berisi db pooling
+NOTE : TERDAPAT ISSUE YAITU tabel migrasi harus dihapus terlebih dahulu

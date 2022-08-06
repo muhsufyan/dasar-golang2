@@ -5,6 +5,7 @@ import (
 	"database/sql"
 
 	"github.com/go-playground/validator/v10"
+	"github.com/muhsufyan/dasar-golang2/exception"
 	"github.com/muhsufyan/dasar-golang2/helper"
 	"github.com/muhsufyan/dasar-golang2/model/domain"
 	"github.com/muhsufyan/dasar-golang2/model/web"
@@ -60,7 +61,10 @@ func (service *CategoryServiceImpl) Update(ctx context.Context, request web.Cate
 	// implementasi busines logic create category
 	// 1. cek id category yg akan di update
 	category, err := service.CategoryRepository.FindById(ctx, tx, request.Id)
-	helper.PanicIfError(err)
+	// helper.PanicIfError(err) ganti
+	if err != nil {
+		panic(exception.NewNotFoundError(err.Error()))
+	}
 	// simpan nama inputan dari request user
 	category.Name = request.Name
 	//2. jalankan query update lewat repository
@@ -76,7 +80,10 @@ func (service *CategoryServiceImpl) Delete(ctx context.Context, categoryId int) 
 	// implementasi busines logic create category
 	// cek id category yg akan di update
 	category, err := service.CategoryRepository.FindById(ctx, tx, categoryId)
-	helper.PanicIfError(err)
+	// helper.PanicIfError(err) ganti
+	if err != nil {
+		panic(exception.NewNotFoundError(err.Error()))
+	}
 	// jalankan query delete lewat repository
 	service.CategoryRepository.Delete(ctx, tx, category)
 }
@@ -87,7 +94,10 @@ func (service *CategoryServiceImpl) FindById(ctx context.Context, categoryId int
 	defer helper.CommitOrRollback(tx)
 	// implementasi busines logic create category
 	category, err := service.CategoryRepository.FindById(ctx, tx, categoryId)
-	helper.PanicIfError(err)
+	// helper.PanicIfError(err) ganti
+	if err != nil {
+		panic(exception.NewNotFoundError(err.Error()))
+	}
 	return helper.Convert2CategoryResponse(category)
 }
 func (service *CategoryServiceImpl) FindAll(ctx context.Context) []web.CategoryResponse {

@@ -1,10 +1,12 @@
 # dasar-golang2
-manual test
+error Handler
 
-test dilakukan melalui postman
-pada bagian response hasilnya masih Camel case jd harus diubah dulu (agar ketika dikirim ke user datanya bkn Camel case) sehingga dibagian data model yaitu model/web/* ditambah atribut json, tp khusus untuk cagetory_update_request.go tdk id-nya tidak perlu karena didapat dr query param
+sblmnya error dihandle melalui panic tp ke user tdk ada apa response apapun, hal tsb mash lbh baik drpdditampilkan errornya ke user.
 
-terjd error invalid connection, hal ini terjd karena kita tdk close koneksi saat memanggil rows di repository implementasi pd func FindById & FindAll
+buat folder dg nama exception untuk handle error
 
-pada bagian post dan put saat name kosong error sdh bnr tp ditampilkannya lewat panic bukan error handle sehingga ke user tdk ada response apapun ini akan di perbaiki pd bagian selanjutnya yaitu restapi-20-errorhandler
-NOTE ISSUE SBLMNYA BERASAL DARI HELPER PANICIFERROR DIMANA TDK ADA IF ERR != NIL JD BAGIAN INI SDH DI SOLVE
+ganti pada implementasi service dari panic error jd error handler(response error)
+
+untuk handle error validasi kita akan menggunakan "class" dari library validator
+
+NOTE : KODE SEBLMNYA MSH TERDPT ERROR YANG DIAKIBATKAN KESALAHAN PENEMAPATAN SPRTI HRSNYA POINTER INI MALAH TDK ATAU SEBALIKNYA, SEHARUSNYA DISIMPAN DIBAGIAN CONTROLLER MALAH DISIMPAN DI SERVICE

@@ -3,23 +3,13 @@ package app
 import (
 	"database/sql"
 	"time"
+
+	"github.com/muhsufyan/dasar-golang2/helper"
 )
 
-// "github.com/muhsufyan/dasar-golang2/helper"
 func NewDB() *sql.DB {
-	// db, err := sql.Open("mysql", "root@tcp(localhost:3306)/categoryapi")
-	// helper.PanicIfError(err)
-
-	// db.SetMaxIdleConns(5)
-	// db.SetMaxOpenConns(20)
-	// db.SetConnMaxLifetime(60 * time.Minute)
-	// db.SetConnMaxIdleTime(10 * time.Minute)
-
-	// return db
 	db, err := sql.Open("mysql", "root:@tcp(localhost:3306)/categoryapi")
-	if err != nil {
-		panic(err)
-	}
+	helper.PanicIfError(err)
 	// close koneksi dilakukan saat test, karena ini menggunakan db pooling
 	// set db pool
 	db.SetMaxIdleConns(10)                  //min koneksi

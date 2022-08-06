@@ -45,6 +45,7 @@ func (repository *CategoryRepositoryImpl) FindById(ctx context.Context, tx *sql.
 	sql := "SELECT id, name FROM category WHERE id = ?"
 	rows, err := tx.QueryContext(ctx, sql, categoryId)
 	helper.PanicIfError(err)
+	defer rows.Close()
 	// untuk menampung data
 	category := domain.Category{}
 	// jika datanya ada
@@ -54,7 +55,7 @@ func (repository *CategoryRepositoryImpl) FindById(ctx context.Context, tx *sql.
 		helper.PanicIfError(err)
 		return category, nil
 	} else {
-		return category, errors.New("Category not found")
+		return category, errors.New("category not found")
 	}
 }
 
@@ -62,6 +63,7 @@ func (repository *CategoryRepositoryImpl) FindAll(ctx context.Context, tx *sql.T
 	sql := "SELECT id, name FROM category"
 	rows, err := tx.QueryContext(ctx, sql)
 	helper.PanicIfError(err)
+	defer rows.Close()
 	// untuk menyimpan data
 	var categories []domain.Category
 	// mapping data

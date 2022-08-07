@@ -1,6 +1,10 @@
 # dasar-golang2
-Middleware untuk otentikasi api key
+UNIT TEST dg testify
 
-buat folder baru middleware
+sbnrnya ini lbh ke integration test bukan unit test (hit endpoint langsung)
 
-dibagian main.go ubah Handler dimana sblm ke router hrs melalui middleware otentikasi dulu
+Buat folder baru yaitu test
+
+pd router (define url) akan kita pisahkan ke dlm 1 func (disimpan dlm 1 file) agar mudah saat test, di app buat file baru dan pindahkan define router(asalnya di main.go) ke sana(file baru yaitu app/router.go)
+
+untuk test ini kita akan gunakan db test (bukan mock) jd buat dulu db baru yaitu categoryapi_test lalu migrate

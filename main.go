@@ -10,6 +10,7 @@ import (
 	"github.com/muhsufyan/dasar-golang2/controller"
 	"github.com/muhsufyan/dasar-golang2/exception"
 	"github.com/muhsufyan/dasar-golang2/helper"
+	"github.com/muhsufyan/dasar-golang2/middleware"
 	"github.com/muhsufyan/dasar-golang2/repository"
 	"github.com/muhsufyan/dasar-golang2/service"
 )
@@ -39,7 +40,7 @@ func main() {
 	// http server
 	server := http.Server{
 		Addr:    "localhost:3000",
-		Handler: router,
+		Handler: middleware.NewAuthMiddleware(router),
 	}
 	err := server.ListenAndServe()
 	helper.PanicIfError(err)

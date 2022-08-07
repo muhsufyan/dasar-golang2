@@ -1,16 +1,13 @@
 # dasar-golang2
-INJECTOR
+Stlh injector dibuat, kita generate injector jd kode dependency injection oleh wire
 
-after make provider next make injector
+perintahnya adlh<br>
+wire gen {nama_package}<br>
+pd kasus kita nama_package adlh simple sehingga perintah kasus ini <br>
+wire gen github.com/muhsufyan/dasar-golang2/simple<br>
+atau bisa juga dg perintah <br>
+wire<br>
+tp syaratnya adlh hrs berada di directory file injector berada, kasus ini kita harus ada di directory simple<br>
+maka akan dibuat file wire_gen.go yg mrpkn kode otomatis dependency injection (kode hsl dr auto generate)
 
-injector is func constructor contain config to wire (maksudnya func apa saja yg akan diinjeksi kedalam func constructor)
-
-injector ini adlh file yg akan di generate oleh google wire menjadi file wire_.go
-
-untuk membuat injector maka pd file nya perlu ditambahkan code berikut di bagian paling atas<br>
-//go:build wireinject
-// +build wireinject
-
-file injector ini disarankan dibuat secara khusus yg hanya berisi func" injector saja (tdk ada program yg lain selain func injector)
-
-simple/injector.go akan menjd func injector
+NOTE PROGRAM TIDAK BISA MELAKUKAN AUTO GENERATE KARENA MASALAH INSTALASI WIRE DI WINDOWS

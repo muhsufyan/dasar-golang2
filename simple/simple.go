@@ -8,13 +8,12 @@ type SimpleRepository struct {
 	Error bool
 }
 
-// buat provider repository (buat func provicer repository)
-func NewSimpleRepository() *SimpleRepository {
+// buat provider repository (buat func provicer repository). ralat func ini adalah injector
+// add injector parameter yaitu isError
+func NewSimpleRepository(isError bool) *SimpleRepository {
 	return &SimpleRepository{
-		// cek jika ingin tdk ada error/bisa juga ckp return &SimpleRepository{}
-		// Error: false,
-		// cek jika ingin ada error
-		Error: true,
+		//injector parameter
+		Error: isError,
 	}
 }
 

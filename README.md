@@ -1,17 +1,10 @@
 # dasar-golang2
-Error
+INJECTOR PARAMETER
 
-wire dpt mendeteksi error pd func Provider, otomatis return error. jd provider yg ktia buat hrs mengembalikan 2 data dimana data ke 2 adlh error. 
+parameter dalam injector, sblmnya tdk ada parameter sekarang we add parameter.
 
-lbh detail lihat simple/simple.go
+kita jdkan error as parameter jd tdk hardcode lagi (simple/simple.go) lalu di simple/injector.go tambah isError as provider parameter, sbnrnya bisa juga membuat provider lagi untuk isError (isError as provider) tp sekarang kita sdng bljr injecotr parameter.
 
-tambah if kondisi untuk handle provider error pd constructor provider
+jlnkan perintah wire gen github.com/muhsufyan/dasar-golang2/simple<br>
 
-agar diinjector-nya dpt mengembalikan error juga maka kita perlu menambahkan error di injectornya (simple/injector.go)
-
-stlh itu generate lagi dg perintah<br>
-wire gen github.com/muhsufyan/dasar-golang2/simple
-
-di test/simple_service_test.go tambahkan juga error
-
-now coba jika providernya mengambalikan error dg set simple/simple.go dimana Provider repository (NewSimpleRepository) return Errornya adlh true
+di test/simple_service_test.go kita ubah dg menambahkan injector parameter. jd injector parameter di injector.go dijdkan as provider parameter. Diambil dari tipe datanya (pd kasus ini bool) bukan nama variabelnya (pd kasus ini isError)

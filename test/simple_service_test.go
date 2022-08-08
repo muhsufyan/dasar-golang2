@@ -5,22 +5,25 @@ import (
 	"testing"
 
 	"github.com/muhsufyan/dasar-golang2/simple"
+	"github.com/stretchr/testify/assert"
 )
 
-// set simple/simple.go dimana Provider repository (NewSimpleRepository) return Errornya adlh false/bisa juga ckp return &SimpleRepository{}
 func TestSimpleService(t *testing.T) {
 	// buat test simple service hasil dari wire injector tinggal panggil func InitializedService
 	// tambah error
-	simpleService, err := simple.InitializedService()
+	simpleService, err := simple.InitializedService(false)
 	fmt.Println(simpleService.SimpleRepository)
 	fmt.Println(err)
+	assert.NotNil(t, simpleService)
+	assert.Nil(t, err)
 }
 
-// set simple/simple.go dimana Provider repository (NewSimpleRepository) return Errornya adlh true
 func TestSimpleServiceFailedError(t *testing.T) {
 	// buat test simple service hasil dari wire injector tinggal panggil func InitializedService
 	// tambah error
-	simpleService, err := simple.InitializedService()
+	simpleService, err := simple.InitializedService(true)
 	fmt.Println(simpleService)
 	fmt.Println(err)
+	assert.Nil(t, simpleService)
+	assert.NotNil(t, err)
 }

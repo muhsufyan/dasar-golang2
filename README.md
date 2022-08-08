@@ -10,4 +10,7 @@ wire<br>
 tp syaratnya adlh hrs berada di directory file injector berada, kasus ini kita harus ada di directory simple<br>
 maka akan dibuat file wire_gen.go yg mrpkn kode otomatis dependency injection (kode hsl dr auto generate)
 
-NOTE PROGRAM TIDAK BISA MELAKUKAN AUTO GENERATE KARENA MASALAH INSTALASI WIRE DI WINDOWS
+* jd dg wire kita tdk perlu melakukan DI scra manual <br>
+
+now if we want make simpleService tinggal panggil saja func InitializedService, ex we want make unit test (folder test)
+NOTE PROGRAM TIDAK BISA MELAKUKAN AUTO GENERATE KARENA MASALAH INSTALASI WIRE DI WINDOWS, SALAH SATU SOLUSINYA DG MENAMBAHKAN FILE wire.exe kedalam root directory project ini

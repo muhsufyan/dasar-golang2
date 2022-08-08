@@ -1,12 +1,21 @@
 package simple
 
+import "errors"
+
 // buat objek repository
 type SimpleRepository struct {
+	// tambah error untuk handle error provider
+	Error bool
 }
 
 // buat provider repository (buat func provicer repository)
 func NewSimpleRepository() *SimpleRepository {
-	return &SimpleRepository{}
+	return &SimpleRepository{
+		// cek jika ingin tdk ada error/bisa juga ckp return &SimpleRepository{}
+		// Error: false,
+		// cek jika ingin ada error
+		Error: true,
+	}
 }
 
 // buat objek service
@@ -17,6 +26,15 @@ type SimpleService struct {
 }
 
 // buat provider service yg perlu (depend) repository, jd repository dijdkan as param karena service depend ke repository. (buat func provicer servie)
-func NewSimpleService(repository *SimpleRepository) *SimpleService {
-	return &SimpleService{SimpleRepository: repository}
+// untuk handle error provider kita tambahkan return valunya error
+func NewSimpleService(repository *SimpleRepository) (*SimpleService, error) {
+	// tambah if kondisi untuk handle provider error pd constructor provider repository
+	// jika ada error
+	if repository.Error {
+		return nil, errors.New("failed create service")
+	} else {
+		return &SimpleService{
+			SimpleRepository: repository,
+		}, nil
+	}
 }

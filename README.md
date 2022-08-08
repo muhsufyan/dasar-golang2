@@ -1,16 +1,17 @@
 # dasar-golang2
-Stlh injector dibuat, kita generate injector jd kode dependency injection oleh wire
+Error
 
-perintahnya adlh<br>
-wire gen {nama_package}<br>
-pd kasus kita nama_package adlh simple sehingga perintah kasus ini <br>
-wire gen github.com/muhsufyan/dasar-golang2/simple<br>
-atau bisa juga dg perintah <br>
-wire<br>
-tp syaratnya adlh hrs berada di directory file injector berada, kasus ini kita harus ada di directory simple<br>
-maka akan dibuat file wire_gen.go yg mrpkn kode otomatis dependency injection (kode hsl dr auto generate)
+wire dpt mendeteksi error pd func Provider, otomatis return error. jd provider yg ktia buat hrs mengembalikan 2 data dimana data ke 2 adlh error. 
 
-* jd dg wire kita tdk perlu melakukan DI scra manual <br>
+lbh detail lihat simple/simple.go
 
-now if we want make simpleService tinggal panggil saja func InitializedService, ex we want make unit test (folder test)
-NOTE PROGRAM TIDAK BISA MELAKUKAN AUTO GENERATE KARENA MASALAH INSTALASI WIRE DI WINDOWS, SALAH SATU SOLUSINYA DG MENAMBAHKAN FILE wire.exe kedalam root directory project ini
+tambah if kondisi untuk handle provider error pd constructor provider
+
+agar diinjector-nya dpt mengembalikan error juga maka kita perlu menambahkan error di injectornya (simple/injector.go)
+
+stlh itu generate lagi dg perintah<br>
+wire gen github.com/muhsufyan/dasar-golang2/simple
+
+di test/simple_service_test.go tambahkan juga error
+
+now coba jika providernya mengambalikan error dg set simple/simple.go dimana Provider repository (NewSimpleRepository) return Errornya adlh true

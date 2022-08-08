@@ -10,8 +10,12 @@ package simple
 // buat func injector
 // return-nya adlh dependency terakhir yg diperlukan (dlm kasus ini adlh service), nama func injector kita awali dg Initialize....
 // ini mirip sprti Constructor (New....)
-func InitializedService() *SimpleService {
+// agar injector ini dpt handle error (dampaknya/sehingga provider dpt handle error) maka tambah return value berupa error
+func InitializedService() (*SimpleService, error) {
 	simpleRepository := NewSimpleRepository()
-	simpleService := NewSimpleService(simpleRepository)
-	return simpleService
+	simpleService, err := NewSimpleService(simpleRepository)
+	if err != nil {
+		return nil, err
+	}
+	return simpleService, nil
 }

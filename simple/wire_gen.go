@@ -7,6 +7,8 @@ package simple
 
 import (
 	"github.com/google/wire"
+	"io"
+	"os"
 )
 
 // Injectors from injector.go:
@@ -78,6 +80,17 @@ func InitializedFooBarUsingValue() *FooBar {
 var (
 	_wireFooValue = fooValue
 	_wireBarValue = barValue
+)
+
+// INTERFACE VALUE
+// siapapun yg bth data interface (kasus ini io.Reader mengembalikan interface) maka inject value-nya menggunakan nilai dr yg diinjeck-kan (kasus ini value-nya adlh value yg ada di os.Stdin)
+func InitializedReader() io.Reader {
+	reader := _wireFileValue
+	return reader
+}
+
+var (
+	_wireFileValue = os.Stdin
 )
 
 // injector.go:

@@ -3,7 +3,11 @@
 
 package simple
 
-import "github.com/google/wire"
+import (
+	"github.com/google/wire"
+	"io"
+	"os"
+)
 
 // buat func injector
 // return-nya adlh dependency terakhir yg diperlukan (dlm kasus ini adlh service), nama func injector kita awali dg Initialize....
@@ -90,5 +94,12 @@ var barValue = &Bar{}
 // we want use fooValue & barValue for value nya, lalu kita ambil menggunakan struct provider dan semuanya diinject (via "*")
 func InitializedFooBarUsingValue() *FooBar {
 	wire.Build(wire.Value(fooValue), wire.Value(barValue), wire.Struct(new(FooBar), "*"))
+	return nil
+}
+
+// INTERFACE VALUE
+// siapapun yg bth data interface (kasus ini io.Reader mengembalikan interface) maka inject value-nya menggunakan nilai dr yg diinjeck-kan (kasus ini value-nya adlh value yg ada di os.Stdin)
+func InitializedReader() io.Reader {
+	wire.Build(wire.InterfaceValue(new(io.Reader), os.Stdin))
 	return nil
 }

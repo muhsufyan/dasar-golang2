@@ -1,6 +1,6 @@
 # dasar-golang2
-BINDING VALUES
+INTERFACE VALUE
 
-intinya melakukan DI terhdp value yg tlh ada (tdk membuat provider lagi) caranya lansung sbt/panggil value dr object (tdk use/make provider)
+sblmnya binding value, now nilai tipe datanya berupa interface maka gunakan INTERFACE BINDING / dg binding value sekaligus call interface yg used by value tsb
 
-langsung di injector.go
+ex di injector

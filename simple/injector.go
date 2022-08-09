@@ -34,6 +34,7 @@ func InitializedDatabaseRepository() *DatabaseRepository {
 
 // provider set untuk foo
 var fooSet = wire.NewSet(NewFooRepository, NewFooService)
+
 // provider set untuk bar
 var barSet = wire.NewSet(NewBarRepository, NewBarService)
 
@@ -43,29 +44,30 @@ func InitializedFooBarService() *FooBarService {
 	wire.Build(fooSet, barSet, NewFooBarService)
 	return nil
 }
+
 // // injector yg salah
-// func InitializedHalloService() *simple.HalloService {
+// func InitializedHalloService() *HalloService {
 // 	// tipe data berikut tdk compatible karena NewHalloService butuh NewSayHallo(struct SayHallo as param) bukan NewSayHalloImp (struct SayHalloImp as param)
-// 	wire.Build(simple.NewHalloService, simple.NewSayHalloImp)
+// 	wire.Build(NewHalloService, NewSayHalloImp)
 // 	return nil
 // }
 // // generate dg perintah wire gen github.com/muhsufyan/dasar-golang2/simple
 // // hslnya harus error (no provider found). solusi kode diatas dg melakukan binding interface sbb
 
-// buat provider set 
-var HalloSet= wire.NewSet(
-	simple.NewSayHalloImp,
-	wire.Build(
-		// jika ada yg butuh SayHallo struct as param
-		new(simple.SayHallo),
+// buat provider set
+var HalloSet = wire.NewSet(
+	NewSayHalloImp,
+	// jika ada yg butuh SayHallo struct as param
+	wire.Bind(new(SayHallo),
 		// maka kirim SayHallo struct as param
-		new(*simple.SayHalloImp),
-	)
+		new(*SayHalloImp)),
 )
+
 // Jd sekarang jika ada provider yg butuh SayHallo maka akan dikirim (struct as param-nya) adlh SayHalloImp
 // injector yg benar
-func InitializedHalloService() *simple.HalloService {
-	wire.Build(HalloSet, simple.NewHalloService)
+func InitializedHalloService() *HalloService {
+	wire.Build(HalloSet, NewHalloService)
 	return nil
 }
+
 // generate dg perintah wire gen github.com/muhsufyan/dasar-golang2/simple

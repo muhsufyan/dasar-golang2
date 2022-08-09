@@ -9,4 +9,4 @@ langsung ke contoh, simple/hallo.go
 
 kita buat juga injector-nya, tp pertama" we make injector yg salah di simple/injector.go lalu buat injector yg benar. jika ingin melihat yg salah comment injector yg benar begitupun sebaliknya
 
-NOTE INJECTOR BELUM DI GENERATE
+DONE

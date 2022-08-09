@@ -71,3 +71,13 @@ func InitializedHalloService() *HalloService {
 }
 
 // generate dg perintah wire gen github.com/muhsufyan/dasar-golang2/simple
+
+// provider struct
+// struct provider kasus ini perlu pointer FooBar
+// kita inginkan Foo-nya (lewat "Foo") diinject dan Bar-nya (lewat "Bar") diinject tp kalau malas bisa langsung saja lewat "*"
+func InitializedFooBar() *FooBar {
+	wire.Build(NewFoo, NewBar, wire.Struct(new(FooBar), "Foo", "Bar"))
+	return nil
+}
+
+// generate

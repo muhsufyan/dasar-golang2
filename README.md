@@ -1,12 +1,6 @@
 # dasar-golang2
-BINDING INTERFACE
+STRUCT PROVIDER
 
-biasanya we use interface as kontrak struct tp wire by default use tipe data aslinya so if ada parameter yg berupa interface & tdk ada provider yg return interface tsb maka akan terjd error. Solusi agar tdk error, beri tahu wire bahwa we want melakukan binding interface (memberi tahu for a interface will use provider dg tipe apa(implementasi struct)). Artinya jika ada provider yg memerlukan dependency yg berupa interface. 
+adlh struct yg dijdkan as provider sehingga struct ini akan otomatis jd provider. Penggunaan provider berupa struct jarang digunakan seringnya memakai provider dlm bntk func.
 
-PENJELASAN MATERI INI MEMANG MEMBINGUNGKAN JD TONTON VIDEONYA 
-
-langsung ke contoh, simple/hallo.go
-
-kita buat juga injector-nya, tp pertama" we make injector yg salah di simple/injector.go lalu buat injector yg benar. jika ingin melihat yg salah comment injector yg benar begitupun sebaliknya
-
-DONE
+now we will implement it. First buat provider func biasa di simple/foo_bar.go lalu buat struct provider di injector.go

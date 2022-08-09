@@ -51,6 +51,19 @@ func InitializedHalloService() *HalloService {
 	return halloService
 }
 
+// provider struct
+// struct provider kasus ini perlu pointer FooBar
+// kita inginkan Foo-nya (lewat "Foo") diinject dan Bar-nya (lewat "Bar") diinject
+func InitializedFooBar() *FooBar {
+	foo := NewFoo()
+	bar := NewBar()
+	fooBar := &FooBar{
+		Foo: foo,
+		Bar: bar,
+	}
+	return fooBar
+}
+
 // injector.go:
 
 // provider set untuk foo

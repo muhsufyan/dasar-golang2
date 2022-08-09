@@ -21,3 +21,13 @@ func InitializedService(isError bool) (*SimpleService, error) {
 	// injector can handle error add nil
 	return nil, nil
 }
+
+// injector
+func InitializedDatabaseRepository() *DatabaseRepository {
+	wire.Build(
+		NewDatabaseMysql,
+		NewDatabasePostgre,
+		NewDatabaseRepository,
+	)
+	return nil
+}

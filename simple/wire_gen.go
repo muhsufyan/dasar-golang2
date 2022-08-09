@@ -20,3 +20,11 @@ func InitializedService(isError bool) (*SimpleService, error) {
 	}
 	return simpleService, nil
 }
+
+// injector
+func InitializedDatabaseRepository() *DatabaseRepository {
+	databasePostgre := NewDatabasePostgre()
+	databaseMysql := NewDatabaseMysql()
+	databaseRepository := NewDatabaseRepository(databasePostgre, databaseMysql)
+	return databaseRepository
+}

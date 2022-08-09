@@ -1,10 +1,20 @@
 # dasar-golang2
-INJECTOR PARAMETER
+Kadang kita perlu provider dg tipe data yg sama ini menyebabkan error. ex 2 provider tipe datanya string maka when used wire will confuse provider mana yg akan digunakan (karena ada 2 provider yg bertipe sama yaitu string)
 
-parameter dalam injector, sblmnya tdk ada parameter sekarang we add parameter.
+Solusinya dg membuat alias, sehingga pd kasus 2 provider dg string maka akan menjadi provider string1 & string2
 
-kita jdkan error as parameter jd tdk hardcode lagi (simple/simple.go) lalu di simple/injector.go tambah isError as provider parameter, sbnrnya bisa juga membuat provider lagi untuk isError (isError as provider) tp sekarang kita sdng bljr injecotr parameter.
+ex kita punya 2 database yaitu prostgre & mysql ke 2nya bertipe data sama yaitu Database, alih-alih memakai tipe data Database maka kita gunakan alias jd kita buat tipe data postgre & mysql yg sbnrnya adlh bertipe data Database.
 
-jlnkan perintah wire gen github.com/muhsufyan/dasar-golang2/simple<br>
+ini mirip dg diawal (golang-dasar) dimana<br>
+type NoKTP string<br>
+type NIK string<br>
 
-di test/simple_service_test.go kita ubah dg menambahkan injector parameter. jd injector parameter di injector.go dijdkan as provider parameter. Diambil dari tipe datanya (pd kasus ini bool) bukan nama variabelnya (pd kasus ini isError)
+
+implmentasinya simple/database.go untuk yg menggunakan alias dan simple/database_err.go untuk yg tanpa alias (akan error)<br>
+di simple/injector.go buat func baru untuk injector nya yaitu InitializedDatabaseRepository<br>
+run perintah wire gen github.com/muhsufyan/dasar-golang2/simple<br>
+hasilnya harus error, karena wire bingung ada 2 provider yg tipe datanya sama yaitu Database. errornya sesuai expected yaitu provider has multiple parameters of type *github.com/muhsufyan/dasar-golang2/simple.Databases<br>
+
+now kita mulai ke multiple binding, pertama code di simple/database_err.go nonactivekan dulu(beri komen) lalu di simple/database.go kodenya sama sprti simple/database_err.go cuma kita tambah alias<br>
+
+generate dg perintah wire gen github.com/muhsufyan/dasar-golang2/simple

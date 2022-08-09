@@ -1,16 +1,12 @@
 # dasar-golang2
-PROVIDER SET
+BINDING INTERFACE
 
-used for grouping provider. terapkan provider set saat provider nya sudah sangat banyak.
+biasanya we use interface as kontrak struct tp wire by default use tipe data aslinya so if ada parameter yg berupa interface & tdk ada provider yg return interface tsb maka akan terjd error. Solusi agar tdk error, beri tahu wire bahwa we want melakukan binding interface (memberi tahu for a interface will use provider dg tipe apa(implementasi struct)). Artinya jika ada provider yg memerlukan dependency yg berupa interface. 
 
-ex at simple directory make file foo.go bar.go dari 2 file tsb we have 4 provider yaitu NewFooRepository, NewFooService, NewBarRepository, NewBarService<br>
-next we make new file in simple directory foobar.go, FooBarService will accept provider FooService & BarService. so now we have 5 provider (1 provider is FooBarService)
+PENJELASAN MATERI INI MEMANG MEMBINGUNGKAN JD TONTON VIDEONYA 
 
-di simple/injector.go (file injector) kita akan buat grouping provider menggunakan provider set, tp sbnrnya kita bisa saja langsung membuat kode generate-nya tanpa provider set melalui wire.Build sprti sblm"nya tp agar kode lbh rapih kita akan menggunakan provider set.
+langsung ke contoh, simple/hallo.go
 
-Semua provider foo akan disimpan dlm variabel fooSet (grouping provider foo) & Semua provider bar akan disimpan dlm variabel barSet (grouping provider bar).<br>
-di fooSet & barSet kita buat provider set untuk foo dan untuk bar. kemudian buat injector untuk foobar
+kita buat juga injector-nya, tp pertama" we make injector yg salah di simple/injector.go lalu buat injector yg benar. jika ingin melihat yg salah comment injector yg benar begitupun sebaliknya
 
-lalu generate dg perintah wire gen github.com/muhsufyan/dasar-golang2/simple
-
-NOTE KODE PROGRAM INI BELUM SELESAI, INJECTOR BELUM DIGENERATE
+NOTE INJECTOR BELUM DI GENERATE

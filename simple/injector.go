@@ -31,3 +31,15 @@ func InitializedDatabaseRepository() *DatabaseRepository {
 	)
 	return nil
 }
+
+// provider set untuk foo
+var fooSet = wire.NewSet(NewFooRepository, NewFooService)
+// provider set untuk bar
+var barSet = wire.NewSet(NewBarRepository, NewBarService)
+
+// injector foobar
+func InitializedFooBarService() *FooBarService {
+	// masukkan provider set
+	wire.Build(fooSet, barSet, NewFooBarService)
+	return nil
+}

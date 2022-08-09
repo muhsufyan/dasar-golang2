@@ -1,20 +1,16 @@
 # dasar-golang2
-Kadang kita perlu provider dg tipe data yg sama ini menyebabkan error. ex 2 provider tipe datanya string maka when used wire will confuse provider mana yg akan digunakan (karena ada 2 provider yg bertipe sama yaitu string)
+PROVIDER SET
 
-Solusinya dg membuat alias, sehingga pd kasus 2 provider dg string maka akan menjadi provider string1 & string2
+used for grouping provider. terapkan provider set saat provider nya sudah sangat banyak.
 
-ex kita punya 2 database yaitu prostgre & mysql ke 2nya bertipe data sama yaitu Database, alih-alih memakai tipe data Database maka kita gunakan alias jd kita buat tipe data postgre & mysql yg sbnrnya adlh bertipe data Database.
+ex at simple directory make file foo.go bar.go dari 2 file tsb we have 4 provider yaitu NewFooRepository, NewFooService, NewBarRepository, NewBarService<br>
+next we make new file in simple directory foobar.go, FooBarService will accept provider FooService & BarService. so now we have 5 provider (1 provider is FooBarService)
 
-ini mirip dg diawal (golang-dasar) dimana<br>
-type NoKTP string<br>
-type NIK string<br>
+di simple/injector.go (file injector) kita akan buat grouping provider menggunakan provider set, tp sbnrnya kita bisa saja langsung membuat kode generate-nya tanpa provider set melalui wire.Build sprti sblm"nya tp agar kode lbh rapih kita akan menggunakan provider set.
 
+Semua provider foo akan disimpan dlm variabel fooSet (grouping provider foo) & Semua provider bar akan disimpan dlm variabel barSet (grouping provider bar).<br>
+di fooSet & barSet kita buat provider set untuk foo dan untuk bar. kemudian buat injector untuk foobar
 
-implmentasinya simple/database.go untuk yg menggunakan alias dan simple/database_err.go untuk yg tanpa alias (akan error)<br>
-di simple/injector.go buat func baru untuk injector nya yaitu InitializedDatabaseRepository<br>
-run perintah wire gen github.com/muhsufyan/dasar-golang2/simple<br>
-hasilnya harus error, karena wire bingung ada 2 provider yg tipe datanya sama yaitu Database. errornya sesuai expected yaitu provider has multiple parameters of type *github.com/muhsufyan/dasar-golang2/simple.Databases<br>
+lalu generate dg perintah wire gen github.com/muhsufyan/dasar-golang2/simple
 
-now kita mulai ke multiple binding, pertama code di simple/database_err.go nonactivekan dulu(beri komen) lalu di simple/database.go kodenya sama sprti simple/database_err.go cuma kita tambah alias<br>
-
-generate dg perintah wire gen github.com/muhsufyan/dasar-golang2/simple
+NOTE KODE PROGRAM INI BELUM SELESAI, INJECTOR BELUM DIGENERATE

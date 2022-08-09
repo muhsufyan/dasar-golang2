@@ -1,6 +1,6 @@
 # dasar-golang2
-STRUCT PROVIDER
+BINDING VALUES
 
-adlh struct yg dijdkan as provider sehingga struct ini akan otomatis jd provider. Penggunaan provider berupa struct jarang digunakan seringnya memakai provider dlm bntk func.
+intinya melakukan DI terhdp value yg tlh ada (tdk membuat provider lagi) caranya lansung sbt/panggil value dr object (tdk use/make provider)
 
-now we will implement it. First buat provider func biasa di simple/foo_bar.go lalu buat struct provider di injector.go
+langsung di injector.go

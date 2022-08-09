@@ -53,7 +53,7 @@ func InitializedHalloService() *HalloService {
 
 // provider struct
 // struct provider kasus ini perlu pointer FooBar
-// kita inginkan Foo-nya (lewat "Foo") diinject dan Bar-nya (lewat "Bar") diinject
+// kita inginkan Foo-nya (lewat "Foo") diinject dan Bar-nya (lewat "Bar") diinject tp kalau malas bisa langsung saja lewat "*"
 func InitializedFooBar() *FooBar {
 	foo := NewFoo()
 	bar := NewBar()
@@ -63,6 +63,22 @@ func InitializedFooBar() *FooBar {
 	}
 	return fooBar
 }
+
+// we want use fooValue & barValue for value nya, lalu kita ambil menggunakan struct provider dan semuanya diinject (via "*")
+func InitializedFooBarUsingValue() *FooBar {
+	foo := _wireFooValue
+	bar := _wireBarValue
+	fooBar := &FooBar{
+		Foo: foo,
+		Bar: bar,
+	}
+	return fooBar
+}
+
+var (
+	_wireFooValue = fooValue
+	_wireBarValue = barValue
+)
 
 // injector.go:
 
@@ -78,3 +94,9 @@ var HalloSet = wire.NewSet(
 
 		new(*SayHalloImp)),
 )
+
+// BINDING VALUE
+// ex we have
+var fooValue = &Foo{}
+
+var barValue = &Bar{}

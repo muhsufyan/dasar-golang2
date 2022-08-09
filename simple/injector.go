@@ -81,3 +81,14 @@ func InitializedFooBar() *FooBar {
 }
 
 // generate
+
+// BINDING VALUE
+// ex we have
+var fooValue = &Foo{}
+var barValue = &Bar{}
+
+// we want use fooValue & barValue for value nya, lalu kita ambil menggunakan struct provider dan semuanya diinject (via "*")
+func InitializedFooBarUsingValue() *FooBar {
+	wire.Build(wire.Value(fooValue), wire.Value(barValue), wire.Struct(new(FooBar), "*"))
+	return nil
+}

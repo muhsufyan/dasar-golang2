@@ -13,4 +13,4 @@ di fooSet & barSet kita buat provider set untuk foo dan untuk bar. kemudian buat
 
 lalu generate dg perintah wire gen github.com/muhsufyan/dasar-golang2/simple
 
-NOTE KODE PROGRAM INI BELUM SELESAI, INJECTOR BELUM DIGENERATE
+DONE

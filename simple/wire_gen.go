@@ -5,6 +5,10 @@
 
 package simple
 
+import (
+	"github.com/google/wire"
+)
+
 // Injectors from injector.go:
 
 // buat func injector
@@ -28,3 +32,21 @@ func InitializedDatabaseRepository() *DatabaseRepository {
 	databaseRepository := NewDatabaseRepository(databasePostgre, databaseMysql)
 	return databaseRepository
 }
+
+// injector foobar
+func InitializedFooBarService() *FooBarService {
+	fooRepository := NewFooRepository()
+	fooService := NewFooService(fooRepository)
+	barRepository := NewBarRepository()
+	barService := NewBarService(barRepository)
+	fooBarService := NewFooBarService(fooService, barService)
+	return fooBarService
+}
+
+// injector.go:
+
+// provider set untuk foo
+var fooSet = wire.NewSet(NewFooRepository, NewFooService)
+
+// provider set untuk bar
+var barSet = wire.NewSet(NewBarRepository, NewBarService)

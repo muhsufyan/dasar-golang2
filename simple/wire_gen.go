@@ -93,6 +93,13 @@ var (
 	_wireFileValue = os.Stdin
 )
 
+// STRUCT FIELD PROVIDER
+func InitializedConfiguration() *Configuration {
+	application := NewApplication()
+	configuration := application.Configuration
+	return configuration
+}
+
 // injector.go:
 
 // provider set untuk foo

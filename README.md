@@ -1,6 +1,8 @@
 # dasar-golang2
-INTERFACE VALUE
+STRUCT FIELD PROVIDER
 
-sblmnya binding value, now nilai tipe datanya berupa interface maka gunakan INTERFACE BINDING / dg binding value sekaligus call interface yg used by value tsb
+wire support make provider from field sebuah provider, ex we have data dlm struct & we want menjdkan field dlm struct tsb as provider.
 
-ex di injector
+artinya suatu field dr struct dpt dijdkan DI untuk provider lainnya
+
+contoh kasusnya we make file simple/configuration.go lalu buat injector-nya di injector.go dg nama InitializedConfiguration

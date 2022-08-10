@@ -103,3 +103,20 @@ func InitializedReader() io.Reader {
 	wire.Build(wire.InterfaceValue(new(io.Reader), os.Stdin))
 	return nil
 }
+
+// STRUCT FIELD PROVIDER
+func InitializedConfiguration() *Configuration {
+	wire.Build(
+		NewApplication,
+		// membuat provider dr suatu field yg datanya berasal dari Application & field yg diambil adalah Configuration
+		wire.FieldsOf(new(*Application), "Configuration"),
+	)
+	return nil
+}
+
+/*
+cara diatas (func InitializedConfiguration()) manualnya adlah
+application := NewApplication()
+configuration := application.Configuration
+return configuration
+*/

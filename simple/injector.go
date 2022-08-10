@@ -120,3 +120,10 @@ application := NewApplication()
 configuration := application.Configuration
 return configuration
 */
+
+// CLEAN UP FUNC
+// return nya adlh Connection & closure func
+func InitializedConnection(name string) (*Connection, func()) {
+	wire.Build(NewConnection, NewFile)
+	return nil, nil
+}

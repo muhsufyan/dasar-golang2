@@ -19,4 +19,5 @@ Sblmnya di branch restapi-22-unittest kita melakukan DI scra manual, dpt dilihat
 tp hasil akhir yg dibthkan dari kode tsb sbnrnya adlh variabel server.
 now kita akan jdkan server tsb as injector. untuk melakukan itu kita buat file baru di root directory injector.go
 
-RESTAPI INI TDK MENGIKKUTI TUTORIAL
+
+RESTAPI INI MENGIKKUTI TUTORIAL

@@ -15,7 +15,12 @@ type CategoryRepositoryImpl struct {
 
 // contructor untuk repository, kita tdk perlu param apapun (sesuai dg struct CategoryRepositoryImpl yg tdk menangkap/menyimpan data)
 // return-nya interface repository tp sama sprti constructor untuk repository yg dikembalikan sbnrnya adlh struct dari implementasi-nya (dibhs lain ini disbt dg polymorphisme)
-func NewCategoryRepository() CategoryRepository {
+// func NewCategoryRepository() CategoryRepository {
+// 	return &CategoryRepositoryImpl{}
+// }
+
+// provider diatas ubah returnnya
+func NewCategoryRepository() *CategoryRepositoryImpl {
 	return &CategoryRepositoryImpl{}
 }
 func (repository *CategoryRepositoryImpl) Save(ctx context.Context, tx *sql.Tx, category domain.Category) domain.Category {

@@ -19,5 +19,10 @@ Sblmnya di branch restapi-22-unittest kita melakukan DI scra manual, dpt dilihat
 tp hasil akhir yg dibthkan dari kode tsb sbnrnya adlh variabel server.
 now kita akan jdkan server tsb as injector. untuk melakukan itu kita buat file baru di root directory injector.go
 
+buat provider baru untuk server di main.go
+RESTAPI INI MENGIKKUTI TUTORIAl
 
-RESTAPI INI MENGIKKUTI TUTORIAL
+TERDAPAT ERROR SETELAH GENERATE FUNC InitializedServer tdk ditemukan pdhl ada
+
+
+

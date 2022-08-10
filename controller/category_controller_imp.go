@@ -17,7 +17,16 @@ type CategoryControllerImp struct {
 
 // contructor untuk injeksi dg paramnya interface dan return interface juga, tp sbnrnya yg kita return adlh implementasi dari controllernya (struct) bkn interface
 // contructor ini akan memerlukan param sesuai dg struct diatas sehingga hanya perlu 1 param yaitu service.CategoryService sama sprti struct CategoryControllerImp
-func NewCategoryController(categoryService service.CategoryService) CategoryController {
+// func NewCategoryController(categoryService service.CategoryService) CategoryController {
+// 	// ini yg direturn sehrsnya interface dr controller tp kita return implementasinya, dan inilah kelebihan dari Dependency injection sehingga kita dpt mengubah implementasinya (struct) selama mrpkn implementasi dari interface yg bersangkutan(controller)
+// 	// hal ini wajar membingungkan karena ini adlh golang, sedangkan dibahasa lain ini disbt dg polimorfisme
+// 	return &CategoryControllerImp{
+// 		CategoryService: categoryService,
+// 	}
+// }
+
+// ubah return diatas jd implementasinya, untuk bljr binding
+func NewCategoryController(categoryService service.CategoryService) *CategoryControllerImp {
 	// ini yg direturn sehrsnya interface dr controller tp kita return implementasinya, dan inilah kelebihan dari Dependency injection sehingga kita dpt mengubah implementasinya (struct) selama mrpkn implementasi dari interface yg bersangkutan(controller)
 	// hal ini wajar membingungkan karena ini adlh golang, sedangkan dibahasa lain ini disbt dg polimorfisme
 	return &CategoryControllerImp{

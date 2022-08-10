@@ -3,18 +3,27 @@ package main
 import (
 	"net/http"
 
-	"github.com/go-playground/validator/v10"
 	_ "github.com/go-sql-driver/mysql"
-	"github.com/muhsufyan/dasar-golang2/app"
-	"github.com/muhsufyan/dasar-golang2/controller"
 	"github.com/muhsufyan/dasar-golang2/helper"
 	"github.com/muhsufyan/dasar-golang2/middleware"
-	"github.com/muhsufyan/dasar-golang2/repository"
-	"github.com/muhsufyan/dasar-golang2/service"
 )
 
+// provider server
+func NewServer(authMiddleware *middleware.AuthMiddleware) *http.Server {
+	return &http.Server{
+		Addr:    "localhost:3000",
+		Handler: authMiddleware,
+	}
+}
 func main() {
-	// injeksikan dependensi yg diperlukan
+	// NOW CALL SERVER DARI HASIL GENERATE WIRE
+	server := InitializedServer()
+	err := server.ListenAndServe()
+	helper.PanicIfError(err)
+}
+
+/*fungsi main dg manual dependency
+// injeksikan dependensi yg diperlukan
 	// 1a. injeksi dependensi koneksi ke db melalui db pooling (dependensi yg kita buat)
 	db := app.NewDB()
 	// 1b. injeksi dependensi validasi data input
@@ -27,11 +36,9 @@ func main() {
 	categoryController := controller.NewCategoryController(categoryService)
 
 	router := app.NewRouter(categoryController)
-	// http server
-	server := http.Server{
-		Addr:    "localhost:3000",
-		Handler: middleware.NewAuthMiddleware(router),
-	}
-	err := server.ListenAndServe()
-	helper.PanicIfError(err)
-}
+
+	// 5. injek dependensi middleware
+	authMiddleware := middleware.NewAuthMiddleware(router)
+	// 6. injeksi dependensi http server
+	server := NewServer(authMiddleware)
+*/

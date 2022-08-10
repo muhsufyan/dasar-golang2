@@ -22,7 +22,9 @@ now kita akan jdkan server tsb as injector. untuk melakukan itu kita buat file b
 buat provider baru untuk server di main.go
 RESTAPI INI MENGIKKUTI TUTORIAl
 
-TERDAPAT ERROR SETELAH GENERATE FUNC InitializedServer tdk ditemukan pdhl ada
+TERDAPAT ERROR SETELAH GENERATE FUNC InitializedServer tdk ditemukan pdhl ada. SOLUSINYA DG PERINTAH <br>
+go build<br>
+maka akan otomatis membuat 1 file execute
 
 
 

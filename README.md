@@ -1,8 +1,22 @@
 # dasar-golang2
-UNIT TEST dg testify
+DEPENDENCY INJECTION PADA PROJECT RESTAPI SBLMNYA (branch restapi-22-unittest)
 
-sbnrnya ini lbh ke integration test bukan unit test (hit endpoint langsung)
+Sblmnya di branch restapi-22-unittest kita melakukan DI scra manual, dpt dilihat di main.go dimana DI nya ada di code
 
-hapus data create yg terdahulu, jd setiap kali create untuk test data terdahulu akan dihapus
+	db := app.NewDB()
+	validate := validator.New()
+	categoryRepository := repository.NewCategoryRepository()
+	categoryService := service.NewCategoryService(categoryRepository, db, validate)
+	categoryController := controller.NewCategoryController(categoryService)
 
-untuk testing update success data dummy-nya harus minimal 10 karakter
+	router := app.NewRouter(categoryController)
+
+	server := http.Server{
+		Addr:    "localhost:3000",
+		Handler: middleware.NewAuthMiddleware(router),
+	}
+
+tp hasil akhir yg dibthkan dari kode tsb sbnrnya adlh variabel server.
+now kita akan jdkan server tsb as injector. untuk melakukan itu kita buat file baru di root directory injector.go
+
+RESTAPI INI TDK MENGIKKUTI TUTORIAL

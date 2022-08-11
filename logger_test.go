@@ -1,4 +1,4 @@
-package dasargolang2
+package dasargolang2_test
 
 import (
 	"testing"

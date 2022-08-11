@@ -1,30 +1,9 @@
-# dasar-golang2
-DEPENDENCY INJECTION PADA PROJECT RESTAPI SBLMNYA (branch restapi-22-unittest)
+# LOGGING 
+LOGGER
+kita gunakan logrus
 
-Sblmnya di branch restapi-22-unittest kita melakukan DI scra manual, dpt dilihat di main.go dimana DI nya ada di code
+go get github.com/sirupsen/logrus
 
-	db := app.NewDB()
-	validate := validator.New()
-	categoryRepository := repository.NewCategoryRepository()
-	categoryService := service.NewCategoryService(categoryRepository, db, validate)
-	categoryController := controller.NewCategoryController(categoryService)
-
-	router := app.NewRouter(categoryController)
-
-	server := http.Server{
-		Addr:    "localhost:3000",
-		Handler: middleware.NewAuthMiddleware(router),
-	}
-
-tp hasil akhir yg dibthkan dari kode tsb sbnrnya adlh variabel server.
-now kita akan jdkan server tsb as injector. untuk melakukan itu kita buat file baru di root directory injector.go
-
-buat provider baru untuk server di main.go
-RESTAPI INI MENGIKKUTI TUTORIAl
-
-TERDAPAT ERROR SETELAH GENERATE FUNC InitializedServer tdk ditemukan pdhl ada. SOLUSINYA DG PERINTAH <br>
-go build<br>
-maka akan otomatis membuat 1 file execute
-
-
+logger : struct utama (inti) pada logrus, fungsinya untuk melakukan logging
+to make logger use func New(), the result(return) is pointer to logger
 

@@ -1,12 +1,12 @@
 # LOGGING 
-ENTRY
+HOOK
 
-each log yg we send maka will  made object entry.
+Hook : struct berupa callback will run if terjd kejadian untuk level log tertentu (semacam event jika di event-driven kafka) . sejenis callback/listener jika di js
 
-ex when we make formatter kita sendiri maka parameter untuk melakukan formatting bukan string message but object entry (type param is object entry)
+ex jika terjd log error maka callback akan mengirim notifikasi ke programmer
 
-look entry https://github.com/sirupsen/logrus/blob/master/entry.go that contain data, field, level, message, etc so all log wrap by entry
+use AddHook()
 
-for make entry NewEntry()
-
-membuat entry scra manual sangat jarang dilakukan, ini hanya belajar supaya kita tahu saja
+ex di hook_test.go we make struct implementasi dr hook, hook ini bth implementasi func Levels & Fire<br>
+1. Levels return level apa saja / event apa saja as trigger
+2. Fire, inilah callback yg akan dirun/eksekusi/jlnkan ketika event dari Level terjd. fire bth param berupa entry

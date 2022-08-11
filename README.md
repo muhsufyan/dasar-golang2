@@ -1,8 +1,9 @@
 # LOGGING 
-OUTPUT
+FORMATTER
 
-by default output log send to console. usually we want send to db/file. return output is io.Writter so we can implement it if we want change following kontrak. ex os.OpenFile()
+logrus by default have 2 formatter, TextFormatter (default), JSONFormatter (format message log in JSON format, this option 2). but we can make new formatter if we want (just implement Formatter interface)
 
-0666 : permission file
-Set.Output() : change output from console to file/db
+for change formatter (ex from text to json) use SetFormatter()
+
+previous (logging-3-output) file application.log use TextFormatter
 
